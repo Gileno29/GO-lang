@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -12,7 +13,7 @@ func main() {
 	opcao := capturaOpcao()
 	switch opcao {
 	case 1:
-		fmt.Println("Monitorando...")
+		iniciarMonitoramento()
 	case 2:
 		fmt.Println("Exibindo Logs")
 
@@ -46,6 +47,13 @@ func exbiMenu() {
 	fmt.Println("1 - Iniciar Monitoramento")
 	fmt.Println("2 - Exibir Logs")
 	fmt.Println("0 - sair do Programa")
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando...")
+	site := "https://www.linkedin.com.br/"
+	resp, _ := http.Get(site)
+	fmt.Println(resp.Status)
 }
 
 //fmt.Scanf("%d", &opcao)
