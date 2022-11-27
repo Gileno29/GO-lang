@@ -1,4 +1,4 @@
-package main
+/*package main
 
 import (
 	"fmt"
@@ -17,3 +17,4 @@ func main() {
 
 ///OUTRA FORMA DE SE DECLARAR VARIAVEIS
 //nome: = "seu nome"
+*/
