@@ -8,21 +8,24 @@ import (
 
 func main() {
 	exibeIntroducao()
-	exbiMenu()
 
-	opcao := capturaOpcao()
-	switch opcao {
-	case 1:
-		iniciarMonitoramento()
-	case 2:
-		fmt.Println("Exibindo Logs")
+	for {
+		exbiMenu()
+		opcao := capturaOpcao()
+		switch opcao {
+		case 1:
+			iniciarMonitoramento()
+		case 2:
+			fmt.Println("Exibindo Logs")
 
-	case 0:
-		fmt.Println("Saindo do programa")
-		os.Exit(0)
-	default:
-		fmt.Println("Comando não pertence as opções válidas")
-		os.Exit(-1)
+		case 0:
+			fmt.Println("Saindo do programa")
+			os.Exit(0)
+		default:
+			fmt.Println("Comando não pertence as opções válidas")
+			os.Exit(-1)
+		}
+
 	}
 }
 
@@ -53,7 +56,11 @@ func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
 	site := "https://www.linkedin.com.br/"
 	resp, _ := http.Get(site)
-	fmt.Println(resp.Status)
+	if resp.StatusCode == 200 {
+		fmt.Println("O siste:", site, "encontra-se operante no momento")
+	} else {
+		fmt.Println("O Site: ", site, "Encontra-se inoperante no momento", resp.StatusCode)
+	}
 }
 
 //fmt.Scanf("%d", &opcao)
