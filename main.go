@@ -54,8 +54,12 @@ func exbiMenu() {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
-	site := "https://www.linkedin.com.br/"
-	resp, _ := http.Get(site)
+	var sites [4]string
+	sites[0] = "https://www.linkedin.com.br/"
+	sites[1] = "https://youtube.com.br/"
+	sites[2] = "https://facebook.com.br/"
+
+	resp, _ := http.Get(sites)
 	if resp.StatusCode == 200 {
 		fmt.Println("O siste:", site, "encontra-se operante no momento")
 	} else {
