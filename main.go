@@ -61,10 +61,15 @@ func iniciarMonitoramento() {
 
 	resp, _ := http.Get(sites)
 	if resp.StatusCode == 200 {
-		fmt.Println("O siste:", site, "encontra-se operante no momento")
+		fmt.Println("O siste:", sites, "encontra-se operante no momento")
 	} else {
-		fmt.Println("O Site: ", site, "Encontra-se inoperante no momento", resp.StatusCode)
+		fmt.Println("O Site: ", sites, "Encontra-se inoperante no momento", resp.StatusCode)
 	}
+}
+
+func exibirNomes() {
+	nomes := []string{"Dougglas", "Daniel", "Bernado"}
+	fmt.Println(nomes)
 }
 
 //fmt.Scanf("%d", &opcao)
