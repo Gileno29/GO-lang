@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -97,19 +99,29 @@ func lerSitesDoArquivo() []string {
 
 	//arquivo, err := ioutil.ReadFile("sites.txt")
 
-	fmt.Println(arquivo)
-
 	if err != nil {
 		fmt.Println("ocorreu um erro: ", err)
 
 	}
 	leitor := bufio.NewReader(arquivo)
-	linha, err := leitor.ReadString('\n')
-	if err != nil {
-		fmt.Println("ocorreu um erro ao ler o arquivo com o bufferio")
+	for {
+		linha, err := leitor.ReadString('\n')
+		linha = strings.TrimSpace(linha)
+		if err != nil {
+
+			if err == io.EOF {
+				fmt.Println("Final de linha do arquivo")
+				break
+
+			} else {
+				fmt.Println("Erro ao ler arquivo", err)
+			}
+		}
+		sites = append(sites, linha)
+		fmt.Println(linha)
+
 	}
 
-	fmt.Println(linha)
 	return sites
 
 }
