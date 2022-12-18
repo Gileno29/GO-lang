@@ -4,7 +4,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
+
+const monitoramentos = 3
+
+const delay = 5
 
 func main() {
 	exibeIntroducao()
@@ -54,19 +59,47 @@ func exbiMenu() {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
-	var sites [4]string
-	sites[0] = "https://www.linkedin.com.br/"
-	sites[1] = "https://youtube.com.br/"
-	sites[2] = "https://facebook.com.br/"
+	sites := lerSitesDoArquivo()
 
-	resp, _ := http.Get(sites)
-	if resp.StatusCode == 200 {
-		fmt.Println("O siste:", sites, "encontra-se operante no momento")
-	} else {
-		fmt.Println("O Site: ", sites, "Encontra-se inoperante no momento", resp.StatusCode)
+	fmt.Println(sites)
+	for i := 0; i < monitoramentos; i++ {
+		for i := 0; i < len(sites); i++ {
+			testaSite(sites[i])
+
+		}
+		time.Sleep(delay * time.Second)
+
 	}
+
 }
 
+func testaSite(site string) {
+	resp, err := http.Get(site)
+
+	if err != nil {
+		fmt.Printf("Erro ao moniorar o site: %s", site+"\n")
+
+	} else {
+		if resp.StatusCode == 200 {
+			fmt.Println("O siste:", site, "encontra-se operante no momento")
+		} else {
+			fmt.Println("O Site: ", site, "Encontra-se inoperante no momento", resp.StatusCode)
+		}
+
+	}
+
+}
+
+func lerSitesDoArquivo() []string {
+	sites := []string{}
+	arquivo, _ := os.Open("sites.txt")
+	fmt.Println(arquivo)
+
+	return sites
+
+}
+
+/*
 func exibirNomes() {
 	nomes := []string{"Dougglas", "Daniel", "Bernado"}
 	fmt.Println(nomes)
@@ -76,7 +109,8 @@ func exibirNomes() {
 
 //leitura de input'
 
-/*if opcao == 1 {
+/*if opcao == 1 {1
+
 	fmt.Println("Monitorando...")
 
 } else if opcao == 2 {
