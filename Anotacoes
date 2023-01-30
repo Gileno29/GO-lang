@@ -1,0 +1,50 @@
+Anotações
+ - Tipos são muito importantes em GO
+ 
+ 
+ Exemplo de como criar um tipo em GO
+ 
+ 
+ type hotdog int
+ var b hotdog
+ 
+var a int 
+
+#NAO É POSSIVEL FAZER ISO:
+a = b, #são tipos distintos
+
+#Tipos Numericos
+# byte is an alias for unit8
+# rune is an alias for int32
+
+
+########################### OVER FLOW ########################
+--> a liguagem permite que quando se atingi o numero máximo de um tipo de variavel se esse valor receber um incremento ele reseta (tipo odometro de carro)
+
+/*
+package main
+
+import (
+    "fmt"
+
+)
+
+func main(){
+
+    var i unit16
+    i= 65536 || numero máximo de dígitos é 65365
+    i++
+    fmt.println(i)  || isso daqui vai ser igual = "0"
+    
+}
+*/
+
+
+
+################################# STRINGS em GOLANG ################
+- STRINGS em GOLANG são imutaveis, para alterar uma string seria preciso criar uma nova string com as alterações necessárias.
+
+-> FORMATS STRINGS GOLANG:
+     - %v %T
+     - Raw string literals
+     - Conversão para slice of bytes: []byte(x)
