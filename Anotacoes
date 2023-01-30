@@ -43,8 +43,32 @@ func main(){
 
 ################################# STRINGS em GOLANG ################
 - STRINGS em GOLANG são imutaveis, para alterar uma string seria preciso criar uma nova string com as alterações necessárias.
+- STRINGS são slices de bytes
 
 -> FORMATS STRINGS GOLANG:
      - %v %T
      - Raw string literals
      - Conversão para slice of bytes: []byte(x)
+     - %#U, %#x
+
+     /*
+     package main
+     import (
+
+            "fmt"
+     )
+
+     func main(){
+        s := "Hello, playground"
+        fmt.Println("%v\n%T", s, s) --- isso vai printar a string e seu tipo
+
+
+        caso seja preciso uma string com uma configuração "esquisita" deve ser usado `` por exemplo:
+        teste:= `essa é uma
+                    string 
+            muito 
+            diferenciada
+
+        `
+
+     }
